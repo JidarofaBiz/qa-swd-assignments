@@ -98,7 +98,7 @@ public class PwdGenTest {
 	
 	@Test
 	public void size30() {	
-		conf = new Configuration(30, false, false, false, false, " ", " ", 1 ); 
+		conf = new Configuration(30, false, false, false, false, " ", " ", 1); 
 		int password= arg.generatePassword(conf)[0].length();
 		Assert.assertEquals(30, password);
 	}
