@@ -15,16 +15,12 @@ public class PwdGenTest {
 	String nLowers;
 	String nUppers;
 	
-	public boolean searchCharters(String password, String symbols)
-	{
+	public boolean searchCharters(String password, String symbols) {
 		boolean flag = false;
 		
-		for (int i = 0; i< password.length(); i++)
-		{
-			for (int j = 0; j < symbols.length(); j++)
-			{
-				if (password.charAt(i) == symbols.charAt(j))
-				{
+		for (int i = 0; i < password.length(); i++) {		
+			for (int j = 0; j < symbols.length(); j++) {
+				if (password.charAt(i) == symbols.charAt(j)) {
 					flag = true;
 				}
 			}
@@ -37,46 +33,42 @@ public class PwdGenTest {
 		boolean flag = false;
 		int cont=0;
 		
-		for (int i = 0; i< password.length(); i++)
-		{
-			for (int j = 0; j < symbols.length(); j++)
-			{
-				if (password.charAt(i) == symbols.charAt(j))
-				{
+		for (int i = 0; i< password.length(); i++) {
+			for (int j = 0; j < symbols.length(); j++) {
+				if (password.charAt(i) == symbols.charAt(j)) {
 					cont++;
 				}
 			}
 		}			
-		if (cont == password.length())
-		{
+		
+		if (cont == password.length()) {
 			flag = true;
 		}		
+		
 		return flag;
 	}
 	
-	public boolean allPasswordsOk(String[] password, String symbols)
-	{
+	public boolean allPasswordsOk(String[] password, String symbols) {
 		boolean flag = false;
 		int cont= 0;
 		
-		for (int i= 0 ; i < password.length; i++)
-		{
-			if (allSysmbolsSame(password[i], symbols)== true)
-			{
+		for (int i= 0 ; i < password.length; i++) {			
+			if (allSysmbolsSame(password[i], symbols)== true) {
 				cont++;
 			}
-		}	
-		if (cont == password.length)
-		{
+		}
+		
+		if (cont == password.length) {
 			flag = true;
-		}	
+		}
+		
 		return flag;
 	}
 	
 	@Before
 	public void setUp() {
 		arg = new Arguments();
-		defaultSize= 16;
+		defaultSize = 16;
 		defaultList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%'/()_.,<>{}[]+-*@^#=";
 		nSysmbols = defaultList.substring(62, 85);
 		nNumbres = defaultList.substring(52, 62);
@@ -92,28 +84,28 @@ public class PwdGenTest {
 	@Test
 	public void size16() {			
 		conf =  new Configuration(16, false, false, false, false, " ", " ", 1);	
-		int password= arg.generatePassword(conf)[0].length();
+		int password = arg.generatePassword(conf)[0].length();
 		Assert.assertEquals(16, password);
 	}
 	
 	@Test
 	public void size30() {	
 		conf = new Configuration(30, false, false, false, false, " ", " ", 1); 
-		int password= arg.generatePassword(conf)[0].length();
+		int password = arg.generatePassword(conf)[0].length();
 		Assert.assertEquals(30, password);
 	}
 	
 	@Test
 	public void total3() {	
 		conf = new Configuration (defaultSize, false, false, false, false, " ", " ", 3);
-		int password= arg.generatePassword(conf).length;
+		int password = arg.generatePassword(conf).length;
 		Assert.assertEquals(3, password);
 	}
 	
 	@Test
 	public void total20() {	
 		conf = new Configuration (defaultSize, false, false, false, false, " ", " ", 20);
-		int password= arg.generatePassword(conf).length;
+		int password = arg.generatePassword(conf).length;
 		Assert.assertEquals(20, password);
 	}
 	
@@ -157,7 +149,7 @@ public class PwdGenTest {
 	public void withoutSymbols()
 	{
 		conf = new Configuration (defaultSize, true, true, true, false, " ", " ", 5);
-		String symbols= defaultList.substring(62, 85);
+		String symbols = defaultList.substring(62, 85);
 		String password = arg.generatePassword(conf)[0];
 		boolean flag = searchCharters(password, symbols);
 		Assert.assertFalse(flag);
@@ -172,12 +164,11 @@ public class PwdGenTest {
 		boolean flag = searchCharters(password, symbols);
 		Assert.assertFalse(flag);
 	}
-
 	
 	@Test
 	public void excludeAmbiguous()
 	{
-		String symbols= "iILl1oO0";
+		String symbols = "iILl1oO0";
 		conf = new Configuration (defaultSize, true, true, true, true, " ", symbols, 7);		
 		String password = arg.generatePassword(conf)[0];
 		boolean flag = searchCharters(password, symbols);
@@ -199,7 +190,6 @@ public class PwdGenTest {
 		conf = new Configuration (defaultSize, true, false, false, false, " ", " ", 9);
 		String[] password = arg.generatePassword(conf);
 		boolean flag = allPasswordsOk(password, nUppers);
-		
 		Assert.assertTrue(flag);
 	}
 	
@@ -235,7 +225,7 @@ public class PwdGenTest {
 	public void lowerNumbers()
 	{
 		conf = new Configuration(defaultSize, false, true, true, false, " ", " ", 13);
-		String symbols= nLowers+nNumbres; 
+		String symbols = nLowers+nNumbres; 
 		String password = arg.generatePassword(conf)[0];
 		boolean flag = allSysmbolsSame(password, symbols);
 		Assert.assertTrue(flag);
@@ -245,7 +235,7 @@ public class PwdGenTest {
 	public void lowerSymbols()
 	{
 		conf = new Configuration (defaultSize, false, true, false, true, " ", " ", 14);
-		String symbols= nLowers+nSysmbols; 
+		String symbols = nLowers+nSysmbols; 
 		String password = arg.generatePassword(conf)[0];
 		boolean flag = allSysmbolsSame(password, symbols);
 		Assert.assertTrue(flag);
@@ -254,8 +244,8 @@ public class PwdGenTest {
 	@Test
 	public void upperNumbers()
 	{
-		conf =new Configuration(defaultSize, true, false, true, false, " ", " ", 15);
-		String symbols= nUppers+nNumbres; 
+		conf = new Configuration(defaultSize, true, false, true, false, " ", " ", 15);
+		String symbols = nUppers+nNumbres; 
 		String password = arg.generatePassword(conf)[0];
 		boolean flag = allSysmbolsSame(password, symbols);
 		Assert.assertTrue(flag);
@@ -265,7 +255,7 @@ public class PwdGenTest {
 	public void numbersSymbols()
 	{
 		conf = new Configuration (defaultSize, false, false, true, true, " ", " ", 16);
-		String symbols= nNumbres+nSysmbols; 
+		String symbols = nNumbres+nSysmbols; 
 		String password = arg.generatePassword(conf)[0];
 		boolean flag = allSysmbolsSame(password, symbols);
 		Assert.assertTrue(flag);
