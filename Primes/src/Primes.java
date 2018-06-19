@@ -1,18 +1,24 @@
+import java.util.List;
+import java.util.ArrayList;
 
 public class Primes {
 	
 	public static void main (String[] args) {
 		
 		CircularPrimes primes = new CircularPrimes();
+		List<Integer> list = new ArrayList<>();
+		list = primes.saveCircularPrimes(1000000);
 		
-		for(int i = 2; i <= 1000000; i++) {		
-			if (primes.toPrime(i)) {				
-				if (primes.toCircularPrime(i)) {				
-					System.out.println(i);
-				}
-			}
+		for (int i = 0; i < list.size(); i++)
+		{
+			System.out.println(list.get(i));
 		}
 		
+		System.out.println("-----------------------");
+		System.out.println("Total circulars primes:");
+		System.out.println(list.size());
+		System.out.println(System.nanoTime());
 		
+	
 	}
 }
