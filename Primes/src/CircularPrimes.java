@@ -1,7 +1,7 @@
 
 public class CircularPrimes {
 
-	public boolean toPrime(int number) {
+	public boolean toPrime_Op1(int number) {
 			
 			int cont = 0; 	
 			for(int j = 1; j <= number; j++) {
@@ -13,6 +13,22 @@ public class CircularPrimes {
 				return true;
 			}						
 			return false;
+	}
+	
+	public boolean toPrime(int number) {
+		
+		int cont = 0; 	
+		for(int j = 1; j <= number; j++) {
+			if (number%j == 0) {
+				cont++;			
+			}
+			
+			if (cont >= 3) {
+				return false;
+			}	
+		}
+							
+		return true;
 	}
 	
 	public boolean toCircularPrime(int number) {

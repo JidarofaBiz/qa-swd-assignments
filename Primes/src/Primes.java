@@ -11,6 +11,8 @@ public class Primes {
 					System.out.println(i);
 				}
 			}
-		}				
+		}
+		
+		
 	}
 }
