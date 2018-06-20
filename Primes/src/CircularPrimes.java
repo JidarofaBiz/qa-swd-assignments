@@ -35,20 +35,10 @@ public class CircularPrimes {
 	
 	private boolean toPrime(int number) {
 			
-		int cont = 0; 	
-		
-		if (number %2 == 0 || number %3 == 0 || number %5 == 0 || number %7 == 0 || number %7 == 0 || number %11 == 0 || number %13 == 0 || number %17 == 0 || number %19 == 0) {
-			
-			return false;
-		}
-		
-		for(int j = 1; j <= number; j++) {
+		int cont = 0; 			
+		for(int j = 2; j <= Math.sqrt(number); j++) {
 			if (number%j == 0) {
-				cont++;			
-			}
-			
-			if (cont >= 3) {
-				return false;
+				return false;		
 			}	
 		}							
 		return true;
@@ -57,7 +47,7 @@ public class CircularPrimes {
 	private boolean toCircularPrime(int number) {
 		
 		Integer wrapperNumber = new Integer(number);
-		int cont = 0; 
+		int cont = 0; 	
 		String a = wrapperNumber.toString(); 
 		
 		for (int i = 1; i <= wrapperNumber.toString().length(); i++) {				
@@ -80,7 +70,6 @@ public class CircularPrimes {
 		for(int i = 2; i <= number; i++) {		
 			if (toPrime(i)) {				
 				if (toCircularPrime(i)) {	
-					System.out.println(i);
 					circularNumbers.add(i);
 				}
 			}
