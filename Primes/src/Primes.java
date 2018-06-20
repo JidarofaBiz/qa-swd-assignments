@@ -9,7 +9,7 @@ public class Primes {
 		List<Integer> list = new ArrayList<>();
 		list = primes.saveCircularPrimes(1000000);
 		
-		double begin = System.currentTimeMillis();
+		double begin = System.nanoTime();
 		
 		for (int i = 0; i < list.size(); i++)
 		{
@@ -19,7 +19,7 @@ public class Primes {
 		System.out.println("-----------------------");
 		System.out.println("Total circulars primes:");
 		System.out.println(list.size());
-		double end = System.currentTimeMillis();
+		double end = System.nanoTime();
 		
 		double result = end - begin;
 		
